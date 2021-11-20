@@ -1,0 +1,15 @@
+.btn-secondary{
+    color: black;
+    background-color: #dadada;
+    border-color: #000000;
+}
+.btn-secondary:hover{
+    color: #fff;
+    background-color: #858484;
+    border-color: #000000;
+}
+.show>.btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(100, 100, 100);
+    border-color: #000000;
+}

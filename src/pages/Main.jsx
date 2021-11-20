@@ -1,12 +1,15 @@
 import React from 'react';
-import CurrencyInput from '../components/CurrencyInput';
-import '../styles/global.css'
+import Currency from '@containers/Currency';
+import '@styles/global.css'
 
 const Main = () => {
     return (
         <>
-            <CurrencyInput inputMask="$10" />
-            <CurrencyInput inputMask="$1000"/>
+            <div className="page-cointainer">
+                <Currency inputMask="$10"/>
+                <h1>To</h1>
+                <Currency inputMask="$10.000"/>
+            </div>
         </>
     );
 }

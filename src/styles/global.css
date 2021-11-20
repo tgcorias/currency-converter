@@ -1,3 +1,16 @@
 body {
     background-color: #7C3BBE;
+    padding-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page-cointainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.page-cointainer h1{
+    font-size: 1.5em;
+    color: #ffffff;
 }
