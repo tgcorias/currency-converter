@@ -1,35 +1,64 @@
 import React, {useState} from 'react';
+const dotenv = require("dotenv");
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@styles/countryList.css'
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
-const CountryList = () => {
+const API = process.env.API+process.env.ACCESS_KEY;
+
+
+const CountryList = ({country, setCountry}) => {
+	const [countryName, setCountryName] = useState('Select');
 	const [dropdown, setDropdown] = useState(false);
-	const [country, setCountry] = useState('Select');
+	const [flag, setFlag] = useState('');
+
+	const countries = API;
+
+	
 
 	const toggleDropdown = () => {
 		setDropdown(!dropdown);
 	}
-	
-	const handleCountryChange = (e) => {
-		setCountry(e.target.innerText);
-		console.log('e.target.innerText: ', e.target.innerText);
+
+
+    	
+	const handleCountryChange = (e, country) => {
+		setCountryName(country.name);
+		setFlag(country.flag);
 		setDropdown(false);
+        setCountry(country)
+		console.log('country: ', country);
 	}
-	// const countries = useGetProducts(API);
+
 	return (
 		<Dropdown isOpen={dropdown} toggle={toggleDropdown} size="lg">
-			<DropdownToggle caret>
-				{country}
-			</DropdownToggle>
-			<DropdownMenu>
+			
+				<DropdownToggle caret>
+					<img src={flag} alt={countryName.name} />
+					{countryName}
+				</DropdownToggle>
+			
+			
+
+			<DropdownMenu className="dropdown-menu">
+
 				<DropdownItem header>Países</DropdownItem>
-				<DropdownItem onClick={(e) => handleCountryChange(e)}>USA</DropdownItem>
-				<DropdownItem onClick={(e) => handleCountryChange(e)}>ARG</DropdownItem>
-				<DropdownItem onClick={(e) => handleCountryChange(e)}>EUR</DropdownItem>
+				{countries.map(country => (
+					<DropdownItem 
+						key={country.id}
+						onClick={(e) => handleCountryChange(e, country)}
+					>
+						<img src={country.flag} alt={country.name} />
+						{country.name}
+					</DropdownItem>
+				))}
+
 			</DropdownMenu>
+
+				
 		</Dropdown>
 	);
 }
+
 
 export default CountryList;
